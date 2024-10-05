@@ -1,0 +1,129 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNA4LSJTVKyOInHMVfBdSfb",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Andrik626/Andrik626/blob/main/Metodo%20de%20newton%20\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "sLKj59Pml1YH",
+        "outputId": "9478722b-1fca-4698-bcb8-eea5a5068c5e"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Ingresa el intervalo a: 1\n",
+            "Ingresa el intervalo b: 2\n",
+            "Ingrese una aproximacion inicial:1\n",
+            "Ingrese el valor de la tolerancia: 0.00001\n",
+            "# i\t\t x\t\t f(x) \t\t derivada(x,tol)\t pn\t\t error\t\t tolerancia\n",
+            "1 \t\t 1.499993 \t 0.874957 \t  5.749978 \t\t 1.347825 \t0.152167 \t0.000010\n",
+            "2 \t\t 1.347825 \t 0.100680 \t  4.449941 \t\t 1.325201 \t0.022625 \t0.000010\n",
+            "3 \t\t 1.325201 \t 0.002059 \t  4.268509 \t\t 1.324718 \t0.000482 \t0.000010\n",
+            "4 \t\t 1.324718 \t 0.000001 \t  4.264675 \t\t 1.324718 \t0.000000 \t0.000010\n",
+            "El valor de x, tal que f(x) = 0, es: 1.3247181786548083\n",
+            "En el intervalo: [1, 2]\n"
+          ]
+        }
+      ],
+      "source": [
+        "from math import * #* importe todas la funciones de la libreria\n",
+        "import numpy as np #trabaja con arregos o vectores\n",
+        "\n",
+        "#Definimos nuestra funcion\n",
+        "def f(x):\n",
+        "    return x**3 - x -1\n",
+        "\n",
+        "\n",
+        "\n",
+        "# Ingreso datos de entrada para los diferentes métodos a trabajar\n",
+        "a = int(input(\"Ingresa el intervalo a: \"))\n",
+        "b = int(input(\"Ingresa el intervalo b: \"))\n",
+        "\n",
+        "#guarda valor inicial y del número de iteraciones\n",
+        "x = float(input(\"Ingrese una aproximacion inicial:\"))\n",
+        "tol = float(input(\"Ingrese el valor de la tolerancia: \"))\n",
+        "\n",
+        "# Funcion de derivada\n",
+        "def derivada(x,h):\n",
+        "    return (f(x+h) - f(x))/h\n",
+        "\n",
+        "#Funcion del error\n",
+        "def error(pn,x):\n",
+        "    return abs(pn-x)\n",
+        "\n",
+        "#Funcion de newton\n",
+        "def newton(x,tol):\n",
+        "    i = 0\n",
+        "    dx = -f(x)/derivada(x,tol)\n",
+        "    pn = x + dx\n",
+        "    print(\"# i\\t\\t x\\t\\t f(x) \\t\\t derivada(x,tol)\\t pn\\t\\t error\\t\\t tolerancia\")\n",
+        "    #Nuestro ciclo iterativo\n",
+        "    while (abs(dx) >= tol ) and i<=100:\n",
+        "        x = x + dx\n",
+        "        dx = -f(x)/ derivada(x,tol)\n",
+        "        i+=1\n",
+        "        error(pn,x)\n",
+        "        pn = x + dx\n",
+        "        print(\"{0} \\t\\t {1:6.6f} \\t {2:6.6f} \\t  {3:6.6f} \\t\\t {4:6.6f} \\t{5:6.6f} \\t{6:6.6f}\".format(i, x, f(x),derivada(x,tol),pn,error(pn,x), tol ))\n",
+        "    return x\n",
+        "\n",
+        "x = newton(x,tol)\n",
+        "print(f\"El valor de x, tal que f(x) = 0, es: {x}\")\n",
+        "print(f\"En el intervalo: {[a,b]}\")\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [],
+      "metadata": {
+        "id": "DZIFKcAxmBBC"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [],
+      "metadata": {
+        "id": "-8hvA_gEmBSv"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "qrmGgbxCmBvh"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
